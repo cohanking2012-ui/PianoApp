@@ -1,0 +1,19 @@
+{
+  "id": "f-and-g",
+  "title": "Meet F and G",
+  "intro": "Add your ring finger (4) on F and your little finger (5) on G. Now each finger of your right hand rests on its own key: this is the \"C position\".",
+  "bpm": 80,
+  "notes": [
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "E4", "dur": 1, "finger": 3},
+    {"note": "F4", "dur": 1, "finger": 4},
+    {"note": "G4", "dur": 2, "finger": 5},
+    {"note": "F4", "dur": 1, "finger": 4},
+    {"note": "G4", "dur": 1, "finger": 5},
+    {"note": "F4", "dur": 1, "finger": 4},
+    {"note": "E4", "dur": 1, "finger": 3},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "C4", "dur": 2, "finger": 1}
+  ]
+}

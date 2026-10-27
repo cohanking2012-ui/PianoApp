@@ -1,0 +1,22 @@
+{
+  "id": "c-d-e",
+  "title": "Meet C, D and E",
+  "intro": "Keep your thumb on middle C. Your index finger (2) plays D and your middle finger (3) plays E. Those are the three white keys around the two black keys.",
+  "tips": [
+    "Curve your fingers like you are holding a small ball."
+  ],
+  "bpm": 80,
+  "notes": [
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "E4", "dur": 1, "finger": 3},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "E4", "dur": 1, "finger": 3},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "E4", "dur": 1, "finger": 3},
+    {"note": "C4", "dur": 2, "finger": 1}
+  ]
+}

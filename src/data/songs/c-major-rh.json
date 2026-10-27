@@ -1,0 +1,26 @@
+{
+  "id": "c-major-rh",
+  "title": "C Major Scale (Right Hand)",
+  "intro": "A scale walks up eight notes in a row. The trick: after E, tuck your thumb under to play F. On the way down, cross finger 3 over your thumb onto E.",
+  "tips": [
+    "Keep your wrist level as your thumb passes under."
+  ],
+  "bpm": 80,
+  "notes": [
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "E4", "dur": 1, "finger": 3},
+    {"note": "F4", "dur": 1, "finger": 1},
+    {"note": "G4", "dur": 1, "finger": 2},
+    {"note": "A4", "dur": 1, "finger": 3},
+    {"note": "B4", "dur": 1, "finger": 4},
+    {"note": "C5", "dur": 1, "finger": 5},
+    {"note": "B4", "dur": 1, "finger": 4},
+    {"note": "A4", "dur": 1, "finger": 3},
+    {"note": "G4", "dur": 1, "finger": 2},
+    {"note": "F4", "dur": 1, "finger": 1},
+    {"note": "E4", "dur": 1, "finger": 3},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "C4", "dur": 2, "finger": 1}
+  ]
+}

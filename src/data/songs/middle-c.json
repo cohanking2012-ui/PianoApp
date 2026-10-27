@@ -1,0 +1,19 @@
+{
+  "id": "middle-c",
+  "title": "Find Middle C",
+  "intro": "Middle C is the C closest to the middle of your keyboard. Look for a group of TWO black keys near the centre: middle C is the white key just to the LEFT of them. Put your right thumb (finger 1) on it and play it each time the app asks.",
+  "tips": [
+    "Lift your thumb between notes so each one is a fresh key press.",
+    "On most keyboards middle C is right under the brand name."
+  ],
+  "bpm": 80,
+  "notes": [
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "C4", "dur": 2, "finger": 1}
+  ]
+}

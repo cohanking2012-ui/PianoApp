@@ -1,0 +1,47 @@
+{
+  "units": [
+    {
+      "title": "Getting started",
+      "lessons": [
+        "middle-c",
+        "c-d-e",
+        "f-and-g",
+        "five-finger-rh",
+        "left-hand-c",
+        "five-finger-lh",
+        "hand-to-hand",
+        "black-keys"
+      ]
+    },
+    {
+      "title": "Scales",
+      "lessons": [
+        "c-major-rh",
+        "c-major-lh",
+        "g-major-rh",
+        "a-minor-rh"
+      ]
+    },
+    {
+      "title": "First songs",
+      "lessons": [
+        "hot-cross-buns",
+        "hot-cross-buns-lh",
+        "mary-had-a-little-lamb",
+        "ode-to-joy",
+        "twinkle-twinkle",
+        "au-clair-de-la-lune",
+        "london-bridge"
+      ]
+    },
+    {
+      "title": "More songs",
+      "lessons": [
+        "jingle-bells",
+        "row-your-boat",
+        "minuet-in-g",
+        "fur-elise"
+      ]
+    }
+  ]
+}

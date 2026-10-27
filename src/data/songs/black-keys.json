@@ -1,0 +1,22 @@
+{
+  "id": "black-keys",
+  "title": "Meet the Black Keys",
+  "intro": "Black keys come in groups of two and three. C♯ and D♯ are the group of two just above middle C; F♯, G♯ and A♯ are the next group of three. A sharp (♯) is the black key just to the right of a white key.",
+  "tips": [
+    "Play black keys a little further in, towards the back of the keyboard."
+  ],
+  "bpm": 80,
+  "notes": [
+    {"note": "C#4", "dur": 1, "finger": 2},
+    {"note": "D#4", "dur": 1, "finger": 3},
+    {"note": "C#4", "dur": 1, "finger": 2},
+    {"note": "D#4", "dur": 1, "finger": 3},
+    {"note": "F#4", "dur": 1, "finger": 2},
+    {"note": "G#4", "dur": 1, "finger": 3},
+    {"note": "A#4", "dur": 1, "finger": 4},
+    {"note": "G#4", "dur": 1, "finger": 3},
+    {"note": "F#4", "dur": 1, "finger": 2},
+    {"note": "C#4", "dur": 1, "finger": 2},
+    {"note": "D#4", "dur": 2, "finger": 3}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "left-hand-c",
+  "title": "Left Hand: Find C3",
+  "intro": "Now the left hand. Find middle C, then go down to the next C to the left: that is C3. Put your LEFT little finger (5) on C3. Your left thumb (1) lands on G3.",
+  "tips": [
+    "Finger numbers are the same on both hands: thumbs are 1, little fingers are 5."
+  ],
+  "bpm": 80,
+  "hand": "L",
+  "notes": [
+    {"note": "C3", "dur": 1, "finger": 5},
+    {"note": "C3", "dur": 1, "finger": 5},
+    {"note": "C3", "dur": 1, "finger": 5},
+    {"note": "C3", "dur": 1, "finger": 5},
+    {"note": "G3", "dur": 1, "finger": 1},
+    {"note": "G3", "dur": 1, "finger": 1},
+    {"note": "C3", "dur": 2, "finger": 5}
+  ]
+}

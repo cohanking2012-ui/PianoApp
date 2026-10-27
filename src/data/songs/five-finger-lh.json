@@ -1,0 +1,22 @@
+{
+  "id": "five-finger-lh",
+  "title": "Five-Finger Warm-Up (Left Hand)",
+  "intro": "Left hand in C position: little finger on C3, thumb on G3. Walk up, walk down, then skip C-E-G.",
+  "bpm": 80,
+  "hand": "L",
+  "notes": [
+    {"note": "C3", "dur": 1, "finger": 5},
+    {"note": "D3", "dur": 1, "finger": 4},
+    {"note": "E3", "dur": 1, "finger": 3},
+    {"note": "F3", "dur": 1, "finger": 2},
+    {"note": "G3", "dur": 1, "finger": 1},
+    {"note": "F3", "dur": 1, "finger": 2},
+    {"note": "E3", "dur": 1, "finger": 3},
+    {"note": "D3", "dur": 1, "finger": 4},
+    {"note": "C3", "dur": 1, "finger": 5},
+    {"note": "E3", "dur": 1, "finger": 3},
+    {"note": "G3", "dur": 1, "finger": 1},
+    {"note": "E3", "dur": 1, "finger": 3},
+    {"note": "C3", "dur": 2, "finger": 5}
+  ]
+}

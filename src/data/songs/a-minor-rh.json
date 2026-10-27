@@ -1,0 +1,23 @@
+{
+  "id": "a-minor-rh",
+  "title": "A Minor Scale (Right Hand)",
+  "intro": "A minor uses only white keys, like C major, but starts on A. Notice how it sounds a little sadder.",
+  "bpm": 80,
+  "notes": [
+    {"note": "A4", "dur": 1, "finger": 1},
+    {"note": "B4", "dur": 1, "finger": 2},
+    {"note": "C5", "dur": 1, "finger": 3},
+    {"note": "D5", "dur": 1, "finger": 1},
+    {"note": "E5", "dur": 1, "finger": 2},
+    {"note": "F5", "dur": 1, "finger": 3},
+    {"note": "G5", "dur": 1, "finger": 4},
+    {"note": "A5", "dur": 1, "finger": 5},
+    {"note": "G5", "dur": 1, "finger": 4},
+    {"note": "F5", "dur": 1, "finger": 3},
+    {"note": "E5", "dur": 1, "finger": 2},
+    {"note": "D5", "dur": 1, "finger": 1},
+    {"note": "C5", "dur": 1, "finger": 3},
+    {"note": "B4", "dur": 1, "finger": 2},
+    {"note": "A4", "dur": 2, "finger": 1}
+  ]
+}

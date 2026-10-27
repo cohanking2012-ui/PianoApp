@@ -1,0 +1,23 @@
+{
+  "id": "g-major-rh",
+  "title": "G Major Scale (Right Hand)",
+  "intro": "G major has one black key: F♯. Start with your thumb on G4 (the G just above middle C) and use the same fingering as C major.",
+  "bpm": 80,
+  "notes": [
+    {"note": "G4", "dur": 1, "finger": 1},
+    {"note": "A4", "dur": 1, "finger": 2},
+    {"note": "B4", "dur": 1, "finger": 3},
+    {"note": "C5", "dur": 1, "finger": 1},
+    {"note": "D5", "dur": 1, "finger": 2},
+    {"note": "E5", "dur": 1, "finger": 3},
+    {"note": "F#5", "dur": 1, "finger": 4},
+    {"note": "G5", "dur": 1, "finger": 5},
+    {"note": "F#5", "dur": 1, "finger": 4},
+    {"note": "E5", "dur": 1, "finger": 3},
+    {"note": "D5", "dur": 1, "finger": 2},
+    {"note": "C5", "dur": 1, "finger": 1},
+    {"note": "B4", "dur": 1, "finger": 3},
+    {"note": "A4", "dur": 1, "finger": 2},
+    {"note": "G4", "dur": 2, "finger": 1}
+  ]
+}

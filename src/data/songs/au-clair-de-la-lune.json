@@ -1,0 +1,31 @@
+{
+  "id": "au-clair-de-la-lune",
+  "title": "Au Clair de la Lune",
+  "composer": "Traditional French",
+  "intro": "A gentle French folk song using only C, D and E. Hold the long notes for their full length in tempo mode.",
+  "bpm": 90,
+  "notes": [
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "E4", "dur": 2, "finger": 3},
+    {"note": "D4", "dur": 2, "finger": 2},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "E4", "dur": 1, "finger": 3},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "C4", "dur": 4, "finger": 1},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "E4", "dur": 2, "finger": 3},
+    {"note": "D4", "dur": 2, "finger": 2},
+    {"note": "C4", "dur": 1, "finger": 1},
+    {"note": "E4", "dur": 1, "finger": 3},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "C4", "dur": 4, "finger": 1}
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "hot-cross-buns-lh",
+  "title": "Hot Cross Buns (Left Hand)",
+  "composer": "Traditional",
+  "intro": "The same tune an octave lower with the left hand. Little finger on C3.",
+  "bpm": 90,
+  "hand": "L",
+  "notes": [
+    {"note": "E3", "dur": 1, "finger": 3},
+    {"note": "D3", "dur": 1, "finger": 4},
+    {"note": "C3", "dur": 2, "finger": 5},
+    {"note": "E3", "dur": 1, "finger": 3},
+    {"note": "D3", "dur": 1, "finger": 4},
+    {"note": "C3", "dur": 2, "finger": 5},
+    {"note": "C3", "dur": 0.5, "finger": 5},
+    {"note": "C3", "dur": 0.5, "finger": 5},
+    {"note": "C3", "dur": 0.5, "finger": 5},
+    {"note": "C3", "dur": 0.5, "finger": 5},
+    {"note": "D3", "dur": 0.5, "finger": 4},
+    {"note": "D3", "dur": 0.5, "finger": 4},
+    {"note": "D3", "dur": 0.5, "finger": 4},
+    {"note": "D3", "dur": 0.5, "finger": 4},
+    {"note": "E3", "dur": 1, "finger": 3},
+    {"note": "D3", "dur": 1, "finger": 4},
+    {"note": "C3", "dur": 2, "finger": 5}
+  ]
+}

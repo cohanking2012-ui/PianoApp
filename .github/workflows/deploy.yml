@@ -1,0 +1,38 @@
+name: Test and deploy
+
+# Every push runs the tests and builds the app. Pushes to main (and the
+# development branch) publish the built app to the gh-pages branch, which
+# GitHub Pages serves over HTTPS.
+on:
+  push:
+    branches: [main, claude/piano-learning-pwa-3mqrlr]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Publish to GitHub Pages (gh-pages branch)
+        if: github.event_name != 'pull_request'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true
+          commit_message: Deploy Piano Coach

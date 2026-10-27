@@ -1,0 +1,25 @@
+{
+  "id": "hand-to-hand",
+  "title": "Hand to Hand",
+  "intro": "Put both hands in C position: left little finger on C3, right thumb on middle C. The tune passes from one hand to the other - only one note is played at a time.",
+  "tips": [
+    "Use the hand buttons to practise each hand on its own first."
+  ],
+  "bpm": 80,
+  "notes": [
+    {"note": "C4", "dur": 1, "finger": 1, "hand": "R"},
+    {"note": "D4", "dur": 1, "finger": 2, "hand": "R"},
+    {"note": "E4", "dur": 1, "finger": 3, "hand": "R"},
+    {"note": "F4", "dur": 1, "finger": 4, "hand": "R"},
+    {"note": "G4", "dur": 2, "finger": 5, "hand": "R"},
+    {"note": "G3", "dur": 1, "finger": 1, "hand": "L"},
+    {"note": "F3", "dur": 1, "finger": 2, "hand": "L"},
+    {"note": "E3", "dur": 1, "finger": 3, "hand": "L"},
+    {"note": "D3", "dur": 1, "finger": 4, "hand": "L"},
+    {"note": "C3", "dur": 2, "finger": 5, "hand": "L"},
+    {"note": "E4", "dur": 1, "finger": 3, "hand": "R"},
+    {"note": "G3", "dur": 1, "finger": 1, "hand": "L"},
+    {"note": "C4", "dur": 1, "finger": 1, "hand": "R"},
+    {"note": "C3", "dur": 1, "finger": 5, "hand": "L"}
+  ]
+}

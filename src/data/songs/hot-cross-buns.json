@@ -1,0 +1,26 @@
+{
+  "id": "hot-cross-buns",
+  "title": "Hot Cross Buns",
+  "composer": "Traditional",
+  "intro": "Your first real song uses just three notes: E, D and C. Right hand in C position.",
+  "bpm": 100,
+  "notes": [
+    {"note": "E4", "dur": 1, "finger": 3},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "C4", "dur": 2, "finger": 1},
+    {"note": "E4", "dur": 1, "finger": 3},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "C4", "dur": 2, "finger": 1},
+    {"note": "C4", "dur": 0.5, "finger": 1},
+    {"note": "C4", "dur": 0.5, "finger": 1},
+    {"note": "C4", "dur": 0.5, "finger": 1},
+    {"note": "C4", "dur": 0.5, "finger": 1},
+    {"note": "D4", "dur": 0.5, "finger": 2},
+    {"note": "D4", "dur": 0.5, "finger": 2},
+    {"note": "D4", "dur": 0.5, "finger": 2},
+    {"note": "D4", "dur": 0.5, "finger": 2},
+    {"note": "E4", "dur": 1, "finger": 3},
+    {"note": "D4", "dur": 1, "finger": 2},
+    {"note": "C4", "dur": 2, "finger": 1}
+  ]
+}
