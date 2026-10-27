@@ -32,7 +32,7 @@ export function SongRow({
   const hands = song.hands.length > 1 ? 'Both hands' : song.hands[0] === 'L' ? 'Left hand' : 'Right hand'
   return (
     <div className="lesson-item" style={{ padding: 0 }}>
-      <a className="lesson-item" style={{ flex: 1, borderBottom: 'none' }} href={href('lesson', song.id)}>
+      <a className="lesson-item" style={{ flex: 1, minWidth: 0, borderBottom: 'none' }} href={href('lesson', song.id)}>
         <span className={`lesson-num${p?.completed ? ' done' : ''}`}>{p?.completed ? <Icon name="check" /> : n ?? '♪'}</span>
         <span className="lesson-text">
           <span className="lesson-title">{song.title}</span>
@@ -40,7 +40,7 @@ export function SongRow({
             {showLevel ? song.composer || hands : `${hands}${song.composer ? ` · ${song.composer}` : ''}`}
           </span>
         </span>
-        <span style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
+        <span style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2, flex: 'none' }}>
           {showLevel && <DifficultyBadge level={song.difficulty} />}
           {p ? (
             <>

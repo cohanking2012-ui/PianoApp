@@ -14,6 +14,8 @@ export interface MidiNote {
 export interface MidiTrack {
   name: string
   notes: MidiNote[]
+  /** First General MIDI program (instrument) used on each channel. */
+  programs: Record<number, number>
 }
 
 export interface MidiFileData {
@@ -94,6 +96,7 @@ export function parseMidiFile(input: ArrayBuffer | Uint8Array): MidiFileData {
     let status = 0
     let name = ''
     const notes: MidiNote[] = []
+    const programs: Record<number, number> = {}
     const open = new Map<number, { tick: number; velocity: number }[]>()
     const close = (channel: number, midi: number, at: number) => {
       const starts = open.get((channel << 8) | midi)
@@ -134,6 +137,7 @@ export function parseMidiFile(input: ArrayBuffer | Uint8Array): MidiFileData {
       const kind = status & 0xf0
       const channel = status & 0x0f
       const second = kind === 0xc0 || kind === 0xd0 ? 0 : tr.u8()
+      if (kind === 0xc0 && programs[channel] === undefined) programs[channel] = first
       if (kind === 0x90 && second > 0) {
         const key = (channel << 8) | first
         if (!open.has(key)) open.set(key, [])
@@ -145,35 +149,121 @@ export function parseMidiFile(input: ArrayBuffer | Uint8Array): MidiFileData {
     // Close any notes left hanging at the end of the track.
     for (const [key, starts] of open) while (starts.length) close(key >> 8, key & 0xff, Math.max(tick, starts[0].tick + 1))
     notes.sort((a, b) => a.startTick - b.startTick || b.midi - a.midi)
-    tracks.push({ name, notes })
+    tracks.push({ name, notes, programs })
   }
   return { format, ticksPerBeat, tempo, timeSignature, tracks }
 }
 
 const round = (x: number) => Math.round(x * 1000) / 1000
 
+const FAMILIES = ['Piano', 'Bells', 'Organ', 'Guitar', 'Bass', 'Strings', 'Voice & strings', 'Brass', 'Reed', 'Flute', 'Synth lead', 'Synth pad', 'Synth', 'Ethnic', 'Percussion', 'Effects']
+
+/** One instrument part of a MIDI file (a track, split by channel). */
+export interface MidiPart {
+  id: string
+  name: string
+  instrument: string
+  program: number | null
+  notes: MidiNote[]
+  low: number
+  high: number
+  average: number
+  /** Share of start times where several notes sound together (0 = single notes, 1 = all chords). */
+  chordiness: number
+}
+
+/** Lists the instrument parts in a file, leaving out drums. */
+export function listParts(data: MidiFileData): MidiPart[] {
+  const parts: MidiPart[] = []
+  data.tracks.forEach((track, t) => {
+    const channels = [...new Set(track.notes.map((n) => n.channel))].filter((c) => c !== 9).sort((a, b) => a - b)
+    for (const channel of channels) {
+      const notes = track.notes.filter((n) => n.channel === channel)
+      const program = track.programs?.[channel] ?? null
+      const starts = new Map<number, number>()
+      notes.forEach((n) => starts.set(n.startTick, (starts.get(n.startTick) ?? 0) + 1))
+      const chordiness = [...starts.values()].filter((c) => c > 1).length / Math.max(1, starts.size)
+      const midis = notes.map((n) => n.midi)
+      const label = track.name || `Track ${t + 1}`
+      parts.push({
+        id: `${t}:${channel}`,
+        name: channels.length > 1 ? `${label} (channel ${channel + 1})` : label,
+        instrument: program === null ? 'Piano' : FAMILIES[Math.floor(program / 8)],
+        program,
+        notes,
+        low: Math.min(...midis),
+        high: Math.max(...midis),
+        average: midis.reduce((a, b) => a + b, 0) / midis.length,
+        chordiness,
+      })
+    }
+  })
+  return parts
+}
+
+const MELODY_NAME = /vocal|voice|melod|lead|sing|soprano|solo|tune|right|\brh\b|treble|flute|violin|trumpet|sax/i
+const LEFT_NAME = /left|\blh\b|bass clef|accomp/i
+
+/** Best guess at which part carries the tune, and which (if any) suits the left hand. */
+export function guessParts(parts: MidiPart[]): { melody: string; left: string | null } {
+  if (!parts.length) throw new Error('No piano notes found in this MIDI file')
+  const score = (p: MidiPart) =>
+    (MELODY_NAME.test(p.name) ? 100 : 0) -
+    (LEFT_NAME.test(p.name) ? 60 : 0) -
+    (p.program !== null && p.program >= 32 && p.program < 40 ? 100 : 0) - // bass
+    (p.notes.length < 8 ? 100 : 0) +
+    p.average -
+    30 * p.chordiness
+  const melody = [...parts].sort((a, b) => score(b) - score(a))[0]
+  const isPiano = (p: MidiPart) => p.program === null || p.program < 8
+  const others = parts.filter((p) => p !== melody && p.average < melody.average)
+  const pianoLeft = others.filter((p) => isPiano(p) && isPiano(melody) && (LEFT_NAME.test(p.name) || p.average < 60))
+  let left: string | null = null
+  if (pianoLeft.length) left = pianoLeft.sort((a, b) => a.average - b.average)[0].id
+  else if (parts.length === 1 && melody.notes.filter((n) => n.midi < 60).length >= melody.notes.length * 0.2) left = melody.id
+  return { melody: melody.id, left }
+}
+
+export interface ImportOptions {
+  /** Part id (from listParts) for the right hand / tune. Defaults to the best guess. */
+  melody?: string
+  /** Part id for the left hand, or null for melody only. Same as melody = split at middle C. */
+  left?: string | null
+  title?: string
+  /** Move each hand by whole octaves into a comfortable range (default true). */
+  fitRange?: boolean
+}
+
+/** Octave shift that brings the middle of a line into [lo, hi]. */
+function octaveShift(midis: number[], lo: number, hi: number) {
+  const sorted = [...midis].sort((a, b) => a - b)
+  const median = sorted[Math.floor(sorted.length / 2)]
+  let shift = 0
+  while (median + shift < lo) shift += 12
+  while (median + shift > hi) shift -= 12
+  return shift
+}
+
 /**
  * Converts a parsed MIDI file into a song. The app teaches single-note
  * playing, so each hand is reduced to one line: the top note of chords for
  * the right hand and the bottom note for the left hand. Drums are skipped.
  */
-export function midiToSong(data: MidiFileData, fileName: string): SongJson {
-  const tracks = data.tracks
-    .map((t) => ({ ...t, notes: t.notes.filter((n) => n.channel !== 9) }))
-    .filter((t) => t.notes.length > 0)
-  if (tracks.length === 0) throw new Error('No piano notes found in this MIDI file')
+export function midiToSong(data: MidiFileData, fileName: string, options: ImportOptions = {}): SongJson {
+  const parts = listParts(data)
+  if (parts.length === 0) throw new Error('No piano notes found in this MIDI file')
+  const guess = guessParts(parts)
+  const melody = parts.find((p) => p.id === (options.melody ?? guess.melody)) ?? parts[0]
+  const leftId = options.left === undefined ? guess.left : options.left
+  const left = leftId === null ? null : (parts.find((p) => p.id === leftId) ?? null)
 
   // Decide which notes belong to which hand.
   const handed: { note: MidiNote; hand: Hand }[] = []
-  if (tracks.length === 1) {
-    for (const note of tracks[0].notes) handed.push({ note, hand: note.midi >= 60 ? 'R' : 'L' })
+  if (left && left.id === melody.id) {
+    for (const note of melody.notes) handed.push({ note, hand: note.midi >= 60 ? 'R' : 'L' })
   } else {
-    const avg = (t: MidiTrack) => t.notes.reduce((s, n) => s + n.midi, 0) / t.notes.length
-    const sorted = [...tracks].sort((a, b) => avg(b) - avg(a))
-    sorted.forEach((t, i) => {
-      const hand: Hand = i === 0 ? 'R' : i === 1 ? 'L' : avg(t) >= 60 ? 'R' : 'L'
-      for (const note of t.notes) handed.push({ note, hand })
-    })
+    for (const note of melody.notes) handed.push({ note, hand: 'R' })
+    if (left) for (const note of left.notes) handed.push({ note, hand: 'L' })
   }
 
   const [num, den] = data.timeSignature
@@ -192,12 +282,22 @@ export function midiToSong(data: MidiFileData, fileName: string): SongJson {
       if (!prev || (hand === 'R' ? note.midi > prev.midi : note.midi < prev.midi)) byStart.set(start, note)
     }
     const starts = [...byStart.keys()].sort((a, b) => a - b)
+    if (!starts.length) continue
+    const shift =
+      options.fitRange === false
+        ? 0
+        : octaveShift(
+            starts.map((st) => byStart.get(st)!.midi),
+            hand === 'R' ? 60 : 43,
+            hand === 'R' ? 76 : 57
+          )
     starts.forEach((start, i) => {
       const note = byStart.get(start)!
       const next = starts[i + 1] ?? Infinity
       const end = Math.min(q(note.endTick), next)
       const dur = Math.max(toBeat(end - start), 0.125)
-      lines.push({ note: midiToName(note.midi), dur: round(dur), hand, start: toBeat(start) })
+      const midi = Math.max(21, Math.min(108, note.midi + shift))
+      lines.push({ note: midiToName(midi), dur: round(dur), hand, start: toBeat(start) })
     })
   }
   if (lines.length === 0) throw new Error('No playable notes found in this MIDI file')
@@ -209,12 +309,12 @@ export function midiToSong(data: MidiFileData, fileName: string): SongJson {
   const notes = lines.slice(0, 3000).map((n) => ({ ...n, start: round(n.start! - offset) }))
 
   const quarterBpm = 60000000 / data.tempo
-  const title = (fileName.replace(/\.(mid|midi)$/i, '').replace(/[_-]+/g, ' ').trim() || 'Imported song').slice(0, 60)
+  const title = (options.title?.trim() || fileName.replace(/\.(mid|midi|kar)$/i, '').replace(/[_-]+/g, ' ').trim() || 'Imported song').slice(0, 60)
   return {
     id: `import-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
     title,
-    composer: 'Imported MIDI file',
-    intro: 'Imported from a MIDI file. Chords were simplified to single notes.',
+    composer: 'My imported song',
+    intro: left ? 'Imported from a MIDI file. Chords were simplified to single notes.' : 'Imported from a MIDI file: the tune only, for your right hand.',
     bpm: Math.round(quarterBpm * beatsPerQuarter),
     timeSignature: [num, den],
     notes,

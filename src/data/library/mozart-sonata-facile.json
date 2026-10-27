@@ -1,0 +1,31 @@
+{
+  "id": "mozart-sonata-facile",
+  "title": "Sonata in C (\"Sonata facile\")",
+  "composer": "Wolfgang Amadeus Mozart, K. 545 (1788)",
+  "category": "Classical",
+  "difficulty": 2,
+  "intro": "The opening of Mozart's \"easy\" sonata, one of the most-played piano pieces of all time. Make the long first notes sing.",
+  "bpm": 90,
+  "timeSignature": [
+    4,
+    4
+  ],
+  "notes": [
+    {"note": "C4", "dur": 2},
+    {"note": "E4", "dur": 1},
+    {"note": "G4", "dur": 1},
+    {"note": "B3", "dur": 1.5},
+    {"note": "C4", "dur": 0.25},
+    {"note": "D4", "dur": 0.25},
+    {"note": "C4", "dur": 1},
+    {"note": "rest", "dur": 1},
+    {"note": "A4", "dur": 2},
+    {"note": "G4", "dur": 1},
+    {"note": "C5", "dur": 1},
+    {"note": "G4", "dur": 1},
+    {"note": "F4", "dur": 0.5},
+    {"note": "E4", "dur": 0.25},
+    {"note": "F4", "dur": 0.25},
+    {"note": "E4", "dur": 2}
+  ]
+}

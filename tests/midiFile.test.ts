@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { midiToSong, parseMidiFile } from '../src/music/midiFile'
+import { guessParts, listParts, midiToSong, parseMidiFile } from '../src/music/midiFile'
 import { parseSong, buildSteps } from '../src/music/song'
 
 /** Tiny MIDI file writer for tests. Events: [deltaTicks, ...bytes]. */
@@ -85,5 +85,40 @@ describe('MIDI file import', () => {
     expect(() => parseMidiFile(new TextEncoder().encode('hello world, not midi'))).toThrow(/not a MIDI file/)
     const drumsOnly = midiFile(0, 96, [track([[0, 0x99, 36, 90], [96, 0x89, 36, 0]])])
     expect(() => midiToSong(parseMidiFile(drumsOnly), 'd.mid')).toThrow(/No piano notes/)
+  })
+
+  it('finds the sung melody in a band arrangement and fits it near middle C', () => {
+    const band = midiFile(1, 96, [
+      track([[0, ...name('Bass')], [0, 0xc0, 33], [0, 0x90, 36, 90], [96, 0x80, 36, 0], [0, 0x90, 43, 90], [96, 0x80, 43, 0]]),
+      track([
+        [0, ...name('Lead Vocals')],
+        [0, 0xc1, 53],
+        ...[88, 91, 93, 91, 88, 86, 84, 86].flatMap((m) => [[0, 0x91, m, 90], [96, 0x81, m, 0]]),
+      ]),
+      track([[0, ...name('Piano')], [0, 0xc2, 0], [0, 0x92, 60, 80, 0, 64, 80, 0, 67, 80], [192, 0x82, 60, 0, 0, 64, 0, 0, 67, 0]]),
+      track([[0, 0x99, 36, 100], [48, 0x89, 36, 0]]),
+    ])
+    const data = parseMidiFile(band)
+    const parts = listParts(data)
+    expect(parts.map((p) => [p.name, p.instrument])).toEqual([
+      ['Bass', 'Bass'],
+      ['Lead Vocals', 'Voice & strings'],
+      ['Piano', 'Piano'],
+    ])
+    expect(parts[2].chordiness).toBe(1)
+    const guess = guessParts(parts)
+    expect(guess.melody).toBe(parts[1].id)
+    expect(guess.left).toBeNull()
+    const song = parseSong(midiToSong(data, 'hit.mid'))
+    expect(song.hands).toEqual(['R'])
+    // A very high line (E6) is moved down an octave into a comfortable range.
+    expect(song.events.map((e) => e.name)).toEqual(['E5', 'G5', 'A5', 'G5', 'E5', 'D5', 'C5', 'D5'])
+    const withPiano = parseSong(midiToSong(data, 'hit.mid', { melody: parts[2].id, left: null, fitRange: false }))
+    expect(withPiano.events.map((e) => e.name)).toEqual(['G4']) // top note of the chord
+  })
+
+  it('splits a single track that uses several channels into separate parts', () => {
+    const fmt0 = midiFile(0, 96, [track([[0, 0x90, 72, 90], [0, 0x91, 48, 90], [96, 0x80, 72, 0], [0, 0x81, 48, 0]])])
+    expect(listParts(parseMidiFile(fmt0)).map((p) => p.name)).toEqual(['Track 1 (channel 1)', 'Track 1 (channel 2)'])
   })
 })

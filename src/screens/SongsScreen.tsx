@@ -1,7 +1,8 @@
 import { useMemo, useRef, useState } from 'react'
 import { CATEGORIES, SONG_LIBRARY } from '../data/library'
-import { midiToSong, parseMidiFile } from '../music/midiFile'
-import { addImportedSong, removeImportedSong, useImportedSongs } from '../state/importedSongs'
+import { listParts, parseMidiFile, type MidiFileData } from '../music/midiFile'
+import { removeImportedSong, useImportedSongs } from '../state/importedSongs'
+import { ImportSheet } from '../ui/ImportSheet'
 import { useProgress } from '../state/progress'
 import { readJson, writeJson } from '../state/store'
 import { Icon } from '../ui/icons'
@@ -26,6 +27,7 @@ export function SongsScreen() {
   const [level, setLevel] = useState<Level>(saved.level)
   const fileInput = useRef<HTMLInputElement>(null)
   const [importMsg, setImportMsg] = useState<{ ok: boolean; text: string } | null>(null)
+  const [pending, setPending] = useState<{ data: MidiFileData; fileName: string } | null>(null)
 
   const setFilters = (c: string, l: Level) => {
     setCategory(c)
@@ -49,9 +51,10 @@ export function SongsScreen() {
     if (!file) return
     try {
       if (file.size > 2_000_000) throw new Error('That file is too big for a song (over 2 MB).')
-      const json = midiToSong(parseMidiFile(await file.arrayBuffer()), file.name)
-      addImportedSong(json)
-      setImportMsg({ ok: true, text: `Added "${json.title}" (${json.notes.length} notes).` })
+      const data = parseMidiFile(await file.arrayBuffer())
+      if (!listParts(data).length) throw new Error('No piano notes found in this MIDI file')
+      setImportMsg(null)
+      setPending({ data, fileName: file.name })
     } catch (e) {
       setImportMsg({ ok: false, text: `Couldn't import that file: ${(e as Error).message}` })
     } finally {
@@ -84,7 +87,7 @@ export function SongsScreen() {
           value={level}
           onChange={(l) => setFilters(category, l)}
           options={[
-            { value: 'all', label: 'Any level' },
+            { value: 'all', label: 'All' },
             { value: '1', label: 'Easy' },
             { value: '2', label: 'Medium' },
             { value: '3', label: 'Harder' },
@@ -127,14 +130,17 @@ export function SongsScreen() {
           </div>
         )}
         <div className="card stack">
-          <p className="muted small">Add any other song as a MIDI file (.mid). Chords are simplified to single notes.</p>
+          <p className="muted small">
+            Add any other song from a MIDI file (.mid), for example one downloaded from MuseScore.com. You choose which part is the
+            tune; it's saved only on this device.
+          </p>
           <button className="btn btn-soft" onClick={() => fileInput.current?.click()}>
             <Icon name="upload" /> Import a MIDI file
           </button>
           <input
             ref={fileInput}
             type="file"
-            accept=".mid,.midi,audio/midi,audio/x-midi"
+            accept=".mid,.midi,.kar,audio/midi,audio/x-midi"
             className="visually-hidden"
             onChange={(e) => onFile(e.target.files?.[0])}
           />
@@ -145,6 +151,7 @@ export function SongsScreen() {
           )}
         </div>
       </section>
+      {pending && <ImportSheet data={pending.data} fileName={pending.fileName} onClose={() => setPending(null)} />}
     </div>
   )
 }

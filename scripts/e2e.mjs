@@ -53,6 +53,26 @@ function wav(notes, seconds, sampleRate = 48000) {
 const wavPath = resolve(OUT, 'middle-c.wav')
 writeFileSync(wavPath, wav([0, 1, 2, 3].map((i) => ({ midi: 60, start: 0.1 + i * 0.8, dur: 0.6 })), 3.2))
 
+// A small multi-instrument MIDI file (bass, vocals, chords, drums).
+function midiBytes() {
+  const vlq = (n) => { const b = [n & 0x7f]; while ((n >>= 7)) b.unshift((n & 0x7f) | 0x80); return b }
+  const name = (s) => [0xff, 0x03, s.length, ...[...s].map((c) => c.charCodeAt(0))]
+  const track = (events) => {
+    const body = events.flatMap(([d, ...bytes]) => [...vlq(d), ...bytes]).concat([0, 0xff, 0x2f, 0])
+    return [0x4d, 0x54, 0x72, 0x6b, 0, 0, (body.length >> 8) & 255, body.length & 255, ...body]
+  }
+  const tune = [64, 62, 60, 62, 64, 64, 64, 62, 62, 62, 64, 67, 67]
+  const tracks = [
+    track([[0, ...name('Bass')], [0, 0xc0, 33], ...[36, 43, 36, 43].flatMap((m) => [[0, 0x90, m, 90], [192, 0x80, m, 0]])]),
+    track([[0, ...name('Lead Vocals')], [0, 0xc1, 53], ...tune.flatMap((m) => [[0, 0x91, m, 90], [96, 0x81, m, 0]])]),
+    track([[0, ...name('Piano')], [0, 0x92, 60, 70, 0, 64, 70, 0, 67, 70], [384, 0x82, 60, 0, 0, 64, 0, 0, 67, 0]]),
+    track([[0, 0x99, 36, 100], [48, 0x89, 36, 0]]),
+  ]
+  return Buffer.from([0x4d, 0x54, 0x68, 0x64, 0, 0, 0, 6, 0, 1, 0, tracks.length, 0, 96, ...tracks.flat()])
+}
+const bandMidiPath = resolve(OUT, 'My_Test_Song.mid')
+writeFileSync(bandMidiPath, midiBytes())
+
 // ---------- server ----------
 const PORT = 4179
 const server = spawn(process.execPath, ['node_modules/vite/bin/vite.js', 'preview', '--port', String(PORT), '--strictPort'], { stdio: 'pipe' })
@@ -114,6 +134,17 @@ try {
   await page.getByText('Für Elise (Opening)').first().click()
   await page.getByRole('dialog').waitFor({ timeout: 5000 })
   check(true, 'search finds "Für Elise" and opens it')
+
+  // Import a band-style MIDI file: the importer suggests the vocal part and opens the new song.
+  await page.goto(BASE + '#/songs')
+  await page.locator('input[type=file]').setInputFiles(bandMidiPath)
+  await page.getByRole('dialog').waitFor({ timeout: 5000 })
+  await page.waitForTimeout(400)
+  check(await page.getByText('Lead Vocals (suggested)').isVisible(), 'importer suggests the vocal part as the tune')
+  await page.screenshot({ path: `${OUT}/import-sheet.png` })
+  await page.getByRole('button', { name: /add song and start/i }).click()
+  await page.getByText('My Test Song').first().waitFor({ timeout: 5000 })
+  check(true, 'imported song opens as a lesson')
 
   // Free play: start the mic and hear middle C from the fake microphone.
   await page.goto(BASE + '#/play')

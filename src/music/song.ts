@@ -81,7 +81,9 @@ export function parseSong(json: SongJson, imported = false): Song {
   let cursor = 0
   let id = 0
   json.notes.forEach((entry, i) => {
-    const dur = Number(entry.dur)
+    let dur = Number(entry.dur)
+    // Triplets are written as 0.333 / 0.667: snap them to exact thirds so bars line up.
+    if (Math.abs(dur * 3 - Math.round(dur * 3)) < 0.01) dur = Math.round(dur * 3) / 3
     if (!(dur > 0)) throw new Error(`Note #${i + 1} in "${json.title}" needs a positive dur`)
     const start = entry.start ?? cursor
     if (!(start >= 0)) throw new Error(`Note #${i + 1} in "${json.title}" has an invalid start`)
