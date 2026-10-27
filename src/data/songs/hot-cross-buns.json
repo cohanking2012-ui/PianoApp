@@ -2,6 +2,8 @@
   "id": "hot-cross-buns",
   "title": "Hot Cross Buns",
   "composer": "Traditional",
+  "category": "Kids & nursery",
+  "difficulty": 1,
   "intro": "Your first real song uses just three notes: E, D and C. Right hand in C position.",
   "bpm": 100,
   "notes": [

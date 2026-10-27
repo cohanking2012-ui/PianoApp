@@ -8,6 +8,7 @@ import { MetronomeScreen } from './screens/MetronomeScreen'
 import { PracticeScreen } from './screens/PracticeScreen'
 import { QuizScreen } from './screens/QuizScreen'
 import { SettingsScreen } from './screens/SettingsScreen'
+import { SongsScreen } from './screens/SongsScreen'
 import { useSettings } from './state/settings'
 import { Icon, type IconName } from './ui/icons'
 import { href, useRoute } from './ui/router'
@@ -15,8 +16,9 @@ import { onUpdateReady, applyUpdate } from './sw-register'
 
 const TABS: { path: string; icon: IconName; label: string }[] = [
   { path: '', icon: 'learn', label: 'Learn' },
+  { path: 'songs', icon: 'songs', label: 'Songs' },
   { path: 'play', icon: 'mic', label: 'Free Play' },
-  { path: 'practice', icon: 'practice', label: 'Practice' },
+  { path: 'practice', icon: 'metronome', label: 'Practice' },
   { path: 'settings', icon: 'settings', label: 'Settings' },
 ]
 
@@ -25,6 +27,8 @@ function Screen({ route }: { route: string[] }) {
   switch (first) {
     case 'lesson':
       return <LessonScreen songId={second ?? ''} />
+    case 'songs':
+      return <SongsScreen />
     case 'play':
       return <FreePlayScreen />
     case 'practice':

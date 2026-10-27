@@ -1190,3 +1190,46 @@ select {
 .guide li {
   margin: 4px 0;
 }
+
+/* Song library */
+.search {
+  width: 100%;
+  min-height: 48px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 0 14px;
+  font-size: 1rem;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.chip[aria-pressed='true'] {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-ink);
+}
+.pill.level-1 {
+  background: var(--good-soft);
+  color: var(--good);
+}
+.pill.level-2 {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+.pill.level-3 {
+  background: var(--bad-soft);
+  color: var(--bad);
+}

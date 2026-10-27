@@ -2,7 +2,8 @@ import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'r
 import { audioTimeToPerf, getAudioContext, unlockAudio } from '../audio/audioContext'
 import { micEngine } from '../audio/micEngine'
 import { playClick, playNote } from '../audio/synth'
-import { nextLesson, useSong } from '../data/useSong'
+import { isLesson } from '../data/library'
+import { nextLesson, nextLibrarySong, useSong } from '../data/useSong'
 import { emitNote, onPlayedNote, startListening, useInputReady, useMicState, midiActive, type PlayedNote } from '../input/inputHub'
 import { displayName } from '../music/naming'
 import { diatonicIndex } from '../music/notes'
@@ -460,12 +461,14 @@ function LessonPlayer({ song }: { song: Song }) {
     emitNote({ midi, time: performance.now(), source: 'touch' })
   }
 
-  const next = nextLesson(song.id)
+  const lesson = isLesson(song.id)
+  const next = lesson ? nextLesson(song.id) : nextLibrarySong(song.id)
+  const backHref = lesson ? href() : href('songs')
 
   return (
     <div className={`player ${flashClass}`} onAnimationEnd={() => setFlashClass('')}>
       <div className="player-top">
-        <a className="icon-btn" href={href()} aria-label="Back to lessons" onClick={() => stopSounds()}>
+        <a className="icon-btn" href={backHref} aria-label={lesson ? 'Back to lessons' : 'Back to songs'} onClick={() => stopSounds()}>
           <Icon name="back" />
         </a>
         <div className="player-title">
@@ -695,13 +698,13 @@ function LessonPlayer({ song }: { song: Song }) {
             <button className="btn btn-primary btn-big" onClick={restart}>
               <Icon name="restart" /> Play again
             </button>
-            {next && !song.imported && (
+            {next && next.id !== song.id && !song.imported && (
               <button className="btn btn-soft btn-big" onClick={() => navigate('lesson', next.id)}>
                 Next: {next.title}
               </button>
             )}
-            <a className="btn" href={href()}>
-              Back to lessons
+            <a className="btn" href={backHref}>
+              {lesson ? 'Back to lessons' : 'Back to songs'}
             </a>
           </div>
         </Sheet>

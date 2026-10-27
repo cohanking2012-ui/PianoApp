@@ -2,6 +2,8 @@
   "id": "ode-to-joy",
   "title": "Ode to Joy",
   "composer": "Ludwig van Beethoven (1824)",
+  "category": "Classical",
+  "difficulty": 1,
   "intro": "The famous melody from Beethoven's 9th Symphony. Right hand in C position; the one low G in the third line is played by your left thumb.",
   "bpm": 100,
   "notes": [

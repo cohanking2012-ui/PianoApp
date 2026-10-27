@@ -32,6 +32,10 @@ export interface SongJson {
   pickup?: number
   /** Default hand for notes without one. */
   hand?: Hand
+  /** Song library grouping, e.g. "Classical". Lessons without one only appear in the curriculum. */
+  category?: string
+  /** 1 = easy, 2 = medium, 3 = harder. */
+  difficulty?: number
   notes: SongNoteJson[]
 }
 
@@ -58,6 +62,8 @@ export interface Song {
   events: NoteEvent[]
   totalBeats: number
   hands: Hand[]
+  category: string
+  difficulty: number
   imported: boolean
   json: SongJson
 }
@@ -107,6 +113,8 @@ export function parseSong(json: SongJson, imported = false): Song {
     events,
     totalBeats,
     hands,
+    category: json.category ?? '',
+    difficulty: Math.max(1, Math.min(3, Math.round(json.difficulty ?? 2))),
     imported,
     json,
   }

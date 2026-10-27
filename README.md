@@ -15,6 +15,7 @@ It is a Progressive Web App (PWA): no app store, works on iPhone (Safari) and An
   - **Listen** button plays the passage so you know how it should sound.
   - Results with accuracy, stars and personal bests.
 - **23 built-in lessons**: finding middle C, single notes, five-finger exercises for each hand, black keys, scales (C major both hands, G major, A minor), then public-domain songs: Hot Cross Buns, Mary Had a Little Lamb, Ode to Joy, Twinkle Twinkle, Au Clair de la Lune, London Bridge, Jingle Bells, Row Row Row Your Boat, Minuet in G (Petzold) and the opening of Für Elise.
+- **Song library** with over 100 public-domain songs (classical themes, folk songs, Christmas carols, hymns, kids' songs and anthems), searchable and filterable by category and difficulty.
 - **Free Play** – shows every note you play with a tuner needle and microphone level meter; the place to test the microphone. "Auto-adjust to my room" sets the noise gate from the room's background noise.
 - **Practice tools** – metronome (tap tempo, 2/3/4/6 beats), note quiz (find the note by name or read it from the staff), keyboard guide.
 - **MIDI keyboards** – plug a keyboard in with USB (Android/computer Chrome) for exact note detection. iPhones don't support Web MIDI, so they use the microphone.
@@ -68,7 +69,7 @@ Because the build uses relative paths, the `dist/` folder also works on any othe
 
 ## Adding songs
 
-Songs are plain JSON files in `src/data/songs/`, listed in lesson order in `src/data/curriculum.json`. Any `.json` file you add to `src/data/songs/` is picked up automatically; add its `id` to a unit in `curriculum.json` to place it in the lesson list.
+Lessons are plain JSON files in `src/data/songs/`, listed in lesson order in `src/data/curriculum.json`. Songs for the **Songs** tab live in `src/data/library/` and need a `category` (one of the categories in `src/data/library.ts`) and a `difficulty` (1 easy – 3 harder). Any `.json` file added to either folder is picked up automatically.
 
 ```json
 {
@@ -81,6 +82,8 @@ Songs are plain JSON files in `src/data/songs/`, listed in lesson order in `src/
   "timeSignature": [4, 4],
   "pickup": 0,
   "hand": "R",
+  "category": "Folk & traditional",
+  "difficulty": 1,
   "notes": [
     { "note": "E4", "dur": 1, "finger": 3 },
     { "note": "D4", "dur": 1, "finger": 2 },

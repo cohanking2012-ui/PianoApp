@@ -2,6 +2,8 @@
   "id": "jingle-bells",
   "title": "Jingle Bells",
   "composer": "James Lord Pierpont (1857)",
+  "category": "Christmas",
+  "difficulty": 2,
   "intro": "The chorus of Jingle Bells, right hand in C position. Lots of repeated Es: keep them light and bouncy.",
   "bpm": 120,
   "notes": [

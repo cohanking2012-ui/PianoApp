@@ -2,6 +2,8 @@
   "id": "london-bridge",
   "title": "London Bridge",
   "composer": "Traditional",
+  "category": "Kids & nursery",
+  "difficulty": 1,
   "intro": "A playground classic. It starts on G (above middle C) and walks down, then back up.",
   "bpm": 100,
   "notes": [

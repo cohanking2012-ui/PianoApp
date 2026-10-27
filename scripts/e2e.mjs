@@ -88,6 +88,7 @@ try {
   // Every screen renders without errors.
   for (const [route, text] of [
     ['', 'Piano Coach'],
+    ['#/songs', 'Songs'],
     ['#/play', 'Free Play'],
     ['#/practice', 'Practice tools'],
     ['#/practice/metronome', 'Metronome'],
@@ -104,6 +105,15 @@ try {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1)
     check(!overflow, `no horizontal scrolling on ${route || 'home'}`)
   }
+
+  // Song library: search finds a song and opens it.
+  await page.goto(BASE + '#/songs')
+  const total = await page.locator('.lesson-list .lesson-item > a').count()
+  check(total >= 100, `song library lists ${total} songs`)
+  await page.getByRole('searchbox').fill('fur elise')
+  await page.getByText('Für Elise (Opening)').first().click()
+  await page.getByRole('dialog').waitFor({ timeout: 5000 })
+  check(true, 'search finds "Für Elise" and opens it')
 
   // Free play: start the mic and hear middle C from the fake microphone.
   await page.goto(BASE + '#/play')

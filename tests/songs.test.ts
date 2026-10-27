@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { BUILT_IN_SONGS, CURRICULUM, LESSON_ORDER } from '../src/data/library'
+import { BUILT_IN_SONGS, CATEGORIES, CURRICULUM, LESSON_ORDER, SONG_LIBRARY } from '../src/data/library'
 import { barCount, barOf, barStartBeat, buildSteps, parseSong, stepsInBars, type SongJson } from '../src/music/song'
 import { midiToName, noteToMidi, parseNoteName, prettyName, diatonicIndex, isBlackKey } from '../src/music/notes'
 
@@ -62,6 +62,34 @@ describe('built-in songs', () => {
   it('built-in songs are single-note melodies (one note at a time)', () => {
     for (const song of BUILT_IN_SONGS) {
       for (const step of buildSteps(song.events)) expect(step.notes.length, song.id).toBe(1)
+    }
+  })
+})
+
+describe('song library', () => {
+  it('every library song has a known category and a difficulty, and ids are unique', () => {
+    const ids = SONG_LIBRARY.map((s) => s.id)
+    expect(new Set(ids).size).toBe(ids.length)
+    for (const song of SONG_LIBRARY) {
+      expect(CATEGORIES, song.id).toContain(song.category)
+      expect([1, 2, 3], song.id).toContain(song.difficulty)
+      expect(song.intro.length, song.id).toBeGreaterThan(10)
+      expect(song.composer.length, song.id).toBeGreaterThan(2)
+    }
+  })
+
+  it('library songs are playable single-note melodies (right hand within F3..A5) that fill their bars', () => {
+    for (const song of SONG_LIBRARY) {
+      for (const step of buildSteps(song.events)) expect(step.notes.length, song.id).toBe(1)
+      for (const e of song.events.filter((x) => x.hand === 'R')) {
+        expect(e.midi, `${song.id} ${e.name}`).toBeGreaterThanOrEqual(noteToMidi('F3'))
+        expect(e.midi, `${song.id} ${e.name}`).toBeLessThanOrEqual(noteToMidi('A5'))
+      }
+      const bars = (song.totalBeats - song.pickup) / song.beatsPerBar
+      const barsNoPickup = song.totalBeats / song.beatsPerBar
+      const whole = (x: number) => Math.abs(x - Math.round(x)) < 1e-3
+      expect(whole(bars) || whole(barsNoPickup), song.id).toBe(true)
+      expect(song.events.length, song.id).toBeGreaterThanOrEqual(8)
     }
   })
 })

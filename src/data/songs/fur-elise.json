@@ -2,6 +2,8 @@
   "id": "fur-elise",
   "title": "Für Elise (Opening)",
   "composer": "Ludwig van Beethoven (1810)",
+  "category": "Classical",
+  "difficulty": 3,
   "intro": "The famous opening, simplified so only one note sounds at a time. The left hand plays the short notes in between the right-hand melody. Practise each hand on its own first, and use wait mode until it feels easy.",
   "tips": [
     "The beat here is an eighth note: count \"1 and 2 and 3 and\" in each bar."

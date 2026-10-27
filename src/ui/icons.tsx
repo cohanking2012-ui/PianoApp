@@ -24,6 +24,7 @@ const paths: Record<string, ReactElement> = {
   loop: <path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z" />,
   wave: <path d="M3 13h2v-2H3v2zm4 4h2V7H7v10zm4 4h2V3h-2v18zm4-4h2V7h-2v10zm4-6v2h2v-2h-2z" />,
   piano: <path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h2.5v-5H7V5H5zm4 0v9h-.5v5h3v-5H11V5H9zm4 0v9h-.5v5h3v-5H15V5h-2zm4 0v9h-.5v5H19V5h-2z" />,
+  songs: <path d="M3 5h12v2H3V5zm0 4h12v2H3V9zm0 4h8v2H3v-2zm14-8v8.6A3.5 3.5 0 1 0 19 16.7V8h3V5h-5z" />,
   plus: <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z" />,
   minus: <path d="M19 13H5v-2h14z" />,
 }
