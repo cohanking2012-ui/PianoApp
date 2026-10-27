@@ -1,0 +1,42 @@
+{
+  "id": "all-my-little-ducklings",
+  "title": "All My Little Ducklings (Alle meine Entchen)",
+  "composer": "Traditional (Germany, 19th century)",
+  "category": "Kids & nursery",
+  "difficulty": 1,
+  "intro": "The first song almost every German child learns, about ducklings swimming on a lake. It walks up the scale from middle C and then steps back down, one finger per key.",
+  "bpm": 100,
+  "timeSignature": [
+    4,
+    4
+  ],
+  "notes": [
+    {"note": "C4", "dur": 1},
+    {"note": "D4", "dur": 1},
+    {"note": "E4", "dur": 1},
+    {"note": "F4", "dur": 1},
+    {"note": "G4", "dur": 2},
+    {"note": "G4", "dur": 2},
+    {"note": "A4", "dur": 1},
+    {"note": "A4", "dur": 1},
+    {"note": "A4", "dur": 1},
+    {"note": "A4", "dur": 1},
+    {"note": "G4", "dur": 4},
+    {"note": "A4", "dur": 1},
+    {"note": "A4", "dur": 1},
+    {"note": "A4", "dur": 1},
+    {"note": "A4", "dur": 1},
+    {"note": "G4", "dur": 4},
+    {"note": "F4", "dur": 1},
+    {"note": "F4", "dur": 1},
+    {"note": "F4", "dur": 1},
+    {"note": "F4", "dur": 1},
+    {"note": "E4", "dur": 2},
+    {"note": "E4", "dur": 2},
+    {"note": "D4", "dur": 1},
+    {"note": "D4", "dur": 1},
+    {"note": "D4", "dur": 1},
+    {"note": "D4", "dur": 1},
+    {"note": "C4", "dur": 4}
+  ]
+}

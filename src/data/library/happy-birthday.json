@@ -1,0 +1,41 @@
+{
+  "id": "happy-birthday",
+  "title": "Happy Birthday",
+  "composer": "Mildred & Patty Hill (1893)",
+  "category": "Kids & nursery",
+  "difficulty": 2,
+  "intro": "The world's favourite party song, here in G major. Each line starts with a quick \"short-long\" pair of notes, so let the first one bounce lightly into the second.",
+  "bpm": 100,
+  "timeSignature": [
+    3,
+    4
+  ],
+  "pickup": 1,
+  "notes": [
+    {"note": "D4", "dur": 0.75},
+    {"note": "D4", "dur": 0.25},
+    {"note": "E4", "dur": 1},
+    {"note": "D4", "dur": 1},
+    {"note": "G4", "dur": 1},
+    {"note": "F#4", "dur": 2},
+    {"note": "D4", "dur": 0.75},
+    {"note": "D4", "dur": 0.25},
+    {"note": "E4", "dur": 1},
+    {"note": "D4", "dur": 1},
+    {"note": "A4", "dur": 1},
+    {"note": "G4", "dur": 2},
+    {"note": "D4", "dur": 0.75},
+    {"note": "D4", "dur": 0.25},
+    {"note": "D5", "dur": 1},
+    {"note": "B4", "dur": 1},
+    {"note": "G4", "dur": 1},
+    {"note": "F#4", "dur": 1},
+    {"note": "E4", "dur": 1},
+    {"note": "C5", "dur": 0.75},
+    {"note": "C5", "dur": 0.25},
+    {"note": "B4", "dur": 1},
+    {"note": "G4", "dur": 1},
+    {"note": "A4", "dur": 1},
+    {"note": "G4", "dur": 2}
+  ]
+}

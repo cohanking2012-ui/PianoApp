@@ -1,0 +1,40 @@
+{
+  "id": "farmer-in-the-dell",
+  "title": "The Farmer in the Dell",
+  "composer": "Traditional (Germany/America, 19th century)",
+  "category": "Kids & nursery",
+  "difficulty": 2,
+  "intro": "A circle-game song from the 1800s. The first line sits on middle C and the second line on E, so it is a great way to practise repeated notes evenly.",
+  "bpm": 150,
+  "timeSignature": [
+    6,
+    8
+  ],
+  "pickup": 1,
+  "notes": [
+    {"note": "G3", "dur": 1},
+    {"note": "C4", "dur": 2},
+    {"note": "C4", "dur": 1},
+    {"note": "C4", "dur": 2},
+    {"note": "C4", "dur": 1},
+    {"note": "C4", "dur": 5},
+    {"note": "D4", "dur": 1},
+    {"note": "E4", "dur": 2},
+    {"note": "E4", "dur": 1},
+    {"note": "E4", "dur": 2},
+    {"note": "E4", "dur": 1},
+    {"note": "E4", "dur": 5},
+    {"note": "G4", "dur": 1},
+    {"note": "G4", "dur": 2},
+    {"note": "A4", "dur": 1},
+    {"note": "G4", "dur": 2},
+    {"note": "E4", "dur": 1},
+    {"note": "C4", "dur": 5},
+    {"note": "D4", "dur": 1},
+    {"note": "E4", "dur": 2},
+    {"note": "E4", "dur": 1},
+    {"note": "D4", "dur": 2},
+    {"note": "D4", "dur": 1},
+    {"note": "C4", "dur": 5}
+  ]
+}
