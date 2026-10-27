@@ -1,0 +1,26 @@
+{
+  "id": "gymnopedie-no-1",
+  "title": "Gymnopédie No. 1",
+  "composer": "Erik Satie (1888)",
+  "category": "Classical",
+  "difficulty": 1,
+  "intro": "Satie's slow, dreamy waltz melody, arranged in C. Wait out the rest at the start, and let the last note ring for its full count.",
+  "bpm": 66,
+  "timeSignature": [
+    3,
+    4
+  ],
+  "notes": [
+    {"note": "rest", "dur": 1},
+    {"note": "E5", "dur": 1},
+    {"note": "G5", "dur": 1},
+    {"note": "F5", "dur": 1},
+    {"note": "E5", "dur": 1},
+    {"note": "B4", "dur": 1},
+    {"note": "A4", "dur": 1},
+    {"note": "B4", "dur": 1},
+    {"note": "C5", "dur": 1},
+    {"note": "G4", "dur": 3},
+    {"note": "E4", "dur": 6}
+  ]
+}

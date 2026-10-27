@@ -1,0 +1,39 @@
+{
+  "id": "eine-kleine-nachtmusik",
+  "title": "Eine kleine Nachtmusik",
+  "composer": "Wolfgang Amadeus Mozart (1787)",
+  "category": "Classical",
+  "difficulty": 2,
+  "intro": "The bright opening of Mozart's most famous serenade. Keep the notes short and crisp, and use the little rests to bounce your hand.",
+  "bpm": 92,
+  "timeSignature": [
+    4,
+    4
+  ],
+  "notes": [
+    {"note": "G4", "dur": 1},
+    {"note": "rest", "dur": 0.5},
+    {"note": "D4", "dur": 0.5},
+    {"note": "G4", "dur": 1},
+    {"note": "rest", "dur": 0.5},
+    {"note": "D4", "dur": 0.5},
+    {"note": "G4", "dur": 0.5},
+    {"note": "D4", "dur": 0.5},
+    {"note": "G4", "dur": 0.5},
+    {"note": "B4", "dur": 0.5},
+    {"note": "D5", "dur": 1},
+    {"note": "rest", "dur": 1},
+    {"note": "C5", "dur": 1},
+    {"note": "rest", "dur": 0.5},
+    {"note": "A4", "dur": 0.5},
+    {"note": "C5", "dur": 1},
+    {"note": "rest", "dur": 0.5},
+    {"note": "A4", "dur": 0.5},
+    {"note": "C5", "dur": 0.5},
+    {"note": "A4", "dur": 0.5},
+    {"note": "F#4", "dur": 0.5},
+    {"note": "A4", "dur": 0.5},
+    {"note": "D4", "dur": 1},
+    {"note": "rest", "dur": 1}
+  ]
+}

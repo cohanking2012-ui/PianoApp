@@ -1,0 +1,41 @@
+{
+  "id": "hall-of-the-mountain-king",
+  "title": "In the Hall of the Mountain King",
+  "composer": "Edvard Grieg (1875)",
+  "category": "Classical",
+  "difficulty": 2,
+  "intro": "The sneaky creeping tune from Peer Gynt, set here in A minor. Start quietly and slowly, then try it a little faster each time, just like the original.",
+  "bpm": 100,
+  "timeSignature": [
+    4,
+    4
+  ],
+  "notes": [
+    {"note": "A3", "dur": 0.5},
+    {"note": "B3", "dur": 0.5},
+    {"note": "C4", "dur": 0.5},
+    {"note": "D4", "dur": 0.5},
+    {"note": "E4", "dur": 0.5},
+    {"note": "C4", "dur": 0.5},
+    {"note": "E4", "dur": 1},
+    {"note": "D#4", "dur": 0.5},
+    {"note": "B3", "dur": 0.5},
+    {"note": "D#4", "dur": 1},
+    {"note": "D4", "dur": 0.5},
+    {"note": "Bb3", "dur": 0.5},
+    {"note": "D4", "dur": 1},
+    {"note": "A3", "dur": 0.5},
+    {"note": "B3", "dur": 0.5},
+    {"note": "C4", "dur": 0.5},
+    {"note": "D4", "dur": 0.5},
+    {"note": "E4", "dur": 0.5},
+    {"note": "C4", "dur": 0.5},
+    {"note": "E4", "dur": 0.5},
+    {"note": "A4", "dur": 0.5},
+    {"note": "G4", "dur": 0.5},
+    {"note": "E4", "dur": 0.5},
+    {"note": "C4", "dur": 0.5},
+    {"note": "E4", "dur": 0.5},
+    {"note": "G4", "dur": 2}
+  ]
+}

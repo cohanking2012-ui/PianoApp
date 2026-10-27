@@ -1,0 +1,31 @@
+{
+  "id": "swan-lake-theme",
+  "title": "Swan Lake (Main Theme)",
+  "composer": "Pyotr Ilyich Tchaikovsky (1876)",
+  "category": "Classical",
+  "difficulty": 2,
+  "intro": "The haunting swan melody from Tchaikovsky's ballet, set here in A minor. Hold each high E long, and make the quick notes lead into it.",
+  "bpm": 72,
+  "timeSignature": [
+    4,
+    4
+  ],
+  "notes": [
+    {"note": "E5", "dur": 2},
+    {"note": "A4", "dur": 0.5},
+    {"note": "B4", "dur": 0.5},
+    {"note": "C5", "dur": 0.5},
+    {"note": "D5", "dur": 0.5},
+    {"note": "E5", "dur": 1.5},
+    {"note": "C5", "dur": 0.5},
+    {"note": "E5", "dur": 1.5},
+    {"note": "C5", "dur": 0.5},
+    {"note": "E5", "dur": 1.5},
+    {"note": "A4", "dur": 0.5},
+    {"note": "C5", "dur": 0.5},
+    {"note": "A4", "dur": 0.5},
+    {"note": "F4", "dur": 0.5},
+    {"note": "C5", "dur": 0.5},
+    {"note": "A4", "dur": 4}
+  ]
+}

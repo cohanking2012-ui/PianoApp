@@ -1,0 +1,25 @@
+{
+  "id": "beethoven-symphony-5",
+  "title": "Symphony No. 5 (Opening)",
+  "composer": "Ludwig van Beethoven (1808)",
+  "category": "Classical",
+  "difficulty": 2,
+  "intro": "\"Da-da-da-DUM!\" The most famous four notes in music. Feel the short rest first, then play the three quick notes strongly and hold the long one.",
+  "bpm": 100,
+  "timeSignature": [
+    2,
+    4
+  ],
+  "notes": [
+    {"note": "rest", "dur": 0.5},
+    {"note": "G4", "dur": 0.5},
+    {"note": "G4", "dur": 0.5},
+    {"note": "G4", "dur": 0.5},
+    {"note": "Eb4", "dur": 2},
+    {"note": "rest", "dur": 0.5},
+    {"note": "F4", "dur": 0.5},
+    {"note": "F4", "dur": 0.5},
+    {"note": "F4", "dur": 0.5},
+    {"note": "D4", "dur": 4}
+  ]
+}
